@@ -58,6 +58,9 @@ class App extends Component {
                                        deleteElement={this.deleteElement}/>
                             </React.Fragment>
                         )}/>
+                        <Route path="/about">
+                            <About />
+                        </Route>
                     </div>
                 </div>
             </Router>
