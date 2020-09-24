@@ -5,6 +5,7 @@ class TodoItem extends Component {
 
     getStyle = () => {
         return {
+            display: 'flex',
             marginTop: '10px',
             background: this.props.todo.completed ? 'linear-gradient(to right, #ffb76b 0%,#ffa73d 50%,#ffffff 81%)' : '#f4f4f4',
             padding: '10px',
@@ -17,10 +18,11 @@ class TodoItem extends Component {
         const {id} = this.props.todo;
         return (
             <div style={this.getStyle()}>
-                <p>
+                <p style={{flexGrow: 1}}>
                     {this.props.todo.title}
 
                 </p>
+                <input type="button" value="Delete" className="btn" onClick={() => this.props.deleteElement(id)} />
             </div>
         );
     }
@@ -28,7 +30,8 @@ class TodoItem extends Component {
 
 TodoItem.propTypes = {
     todo: PropTypes.object.isRequired,
-    markComplete: PropTypes.func.isRequired
+    markComplete: PropTypes.func.isRequired,
+    deleteElement: PropTypes.func.isRequired
 };
 
 export default TodoItem;
