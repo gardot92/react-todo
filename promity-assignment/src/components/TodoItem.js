@@ -23,6 +23,7 @@ class TodoItem extends Component {
 
                 </p>
                 <input type="button" value="Delete" className="btn" onClick={() => this.props.deleteElement(id)} />
+                <input type="button" value={this.props.todo.completed ? 'Uncomple' : 'Complete'} className="btn" style={{marginLeft:5}} onClick={() => this.props.markComplete(id)} />
             </div>
         );
     }

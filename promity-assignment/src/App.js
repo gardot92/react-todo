@@ -20,14 +20,23 @@ class App extends Component {
 
 
     markComplete = (id) => {
-        this.setState({
-            todos: this.state.todos.map(value => {
-                if (value.id === id) {
-                    value.completed = !value.completed;
-                }
-                return value;
+        const index = this.state.todos.findIndex(todo => todo.id === id);
+        if (index >= 0) {
+            axios.patch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+                completed: !this.state.todos[index].completed
+            }).then(() => {
+                this.setState({
+                    todos: [
+                        ...this.state.todos.slice(0, index),
+                        {
+                            ...this.state.todos[index],
+                            completed: !this.state.todos[index].completed
+                        },
+                        ...this.state.todos.slice(index + 1)
+                    ]
+                })
             })
-        })
+        }
     };
 
     deleteTodo = (id) => {
